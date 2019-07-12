@@ -1,0 +1,102 @@
+
+<form method="POST" action="" autocomplete="">
+  <div class='bodyContent'>
+    <section>
+      <p>Calculate Weekly Income with Overtime and Data Validation</p>
+    </section>
+    <hr>
+
+    <section>
+      <label for="" class="typedTextExp">First Name</label>
+      <input type="text" class="textboxW" id="firstName" name="firstName" value="<?php echo $firstName?>" />
+      
+      <label for="" class="typedTextExp">Last Name</label>
+      <input type="text" class="textboxW" id="lastName" name="lastName" value="<?php echo $lastName?>" />
+    </section>
+    
+    <section>
+      <label for="" class="typedTextExp">Hours Worked in 1 Week</label>
+      <input type="text" class="textboxW" id="hoursWorked" name="hoursWorked" value="<?php echo $hoursWorked ?>" />
+      <label for="" class="typedTextExp">Hourly Wage</label>
+      <input type="text" class="textboxW" id="hourlyWage" name="hourlyWage" value="<?php echo $hourlyWage?>" />
+    </section>
+    <hr>
+
+    <section>
+      <label class="typedTextExp">Number of Regular Hours</label>
+      <input class="textboxW readonly-bg" type="text" name="regHoursWorked" 
+        value="<?php
+          if (!is_numeric($hoursWorked)) {
+            echo '';
+          } else {
+            if ($hoursWorked > 40) {
+              echo numFrmtDecimal($regHoursWorked);
+            } else {
+              echo numFrmtDecimal($hoursWorked);
+            }
+          };        
+        ?>"
+        readonly
+      />
+
+      <label class="typedTextExp">Number of Overtime Hours</label>
+      <input class="textboxW readonly-bg" type="text" 
+        name="overtimeHours" 
+        value="<?= numFrmtDecimal($overtimeHours); ?>"
+        readonly
+      />
+    </section>
+
+    <section>
+      <label class="typedTextExp">Gross Weekly Pay</label>
+      <input class="textboxW readonly-bg" type="text" 
+        name="grossPay" 
+        value="<?= numCurrency($grossPay); ?>"
+        readonly
+      />
+
+      <label class="typedTextExp">Regular Tax (25%)</label>
+      <input class="textboxW readonly-bg" type="text" 
+        name="grossTax" 
+        value="<?= numCurrency($grossTax); ?>"
+        readonly
+      />
+    </section>
+
+    <section>
+      <label class="typedTextExp">Gross Overtime Weekly Pay</label>
+      <input class="textboxW readonly-bg" type="text"
+        name="overtimeGrossPay"
+        value="<?= numCurrency($overtimeGrossPay); ?>"
+        readonly
+      />
+
+      <label class="typedTextExp">Overtime Tax (25%)</label>
+      <input class="textboxW readonly-bg" type="text" 
+        name="overtimeTax" 
+        value="<?= numCurrency($overtimeTax); ?>"
+        readonly
+      />
+    </section>
+    <hr>
+    <section>
+      <label class="typedTextExp">Net Weekly Pay</label>
+      <input class="textboxW readonly-bg" type="text" name="netPay" value="<?= numCurrency($netPay); ?>" readonly />
+      <label class="typedTextExp">Net Overtime Weekly Pay</label>
+      <input class="textboxW readonly-bg" type="text"
+        name="overtimeNetPay"
+        value="<?= numCurrency($overtimeNetPay); ?>"
+        readonly
+      />
+    </section>
+    
+    <section>
+      <label class="typedTextExp">Total Pay</label>
+      <input class="textboxW readonly-bg" type="text" name="total" value="<?= numCurrency($total); ?>" readonly />
+    </section>
+    
+    <section>
+      <button type="submit" name="submit">calculate</button>
+    </section>
+  </div>
+</form>
